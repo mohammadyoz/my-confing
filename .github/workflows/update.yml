@@ -22,4 +22,4 @@ jobs:
           git config --global user.email "action@github.com"
           git add sub_link.txt
           git commit -m "Update sub" || exit 0
-          git push
+          git push --force 
