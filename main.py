@@ -4,41 +4,42 @@ import base64
 from datetime import datetime
 
 def get_configs():
-    # لیست بسیار کامل‌تر از کانال‌های فعال
+    # لیست اختصاصی شما که درخواست دادید
     channels = [
-        'V2ray_Alpha', 'v2freeall', 'v2ray_outline_config', 'v2ray_free_confing',
-        'VlessConfig', 'V2RayConfigGenerator', 'v2rayng_vpn', 'FreeVlessConfig',
-        'V2rayNG_Config_free', 'v2ray_configs_pool', 'vmess_vless_v2rayng',
-        'v2rayNG_VPNN', 'ConfigV2rayNG', 'PrivateVPNs', 'V2rayNG_Free_Configs',
-        'customv2ray', 'v2ray_swat', 'V2ray_S_A', 'v2ray_premium', 'vpn_factory',
-        'v2free_config', 'V2rayNG_Configuration', 'v2rayng_fast', 'free_v2ray_config'
+        'Farah_VPN', 'letsproxys', 'shankamil', 'AzadNet', 'MoonsterVpn',
+        'ProxGp', 'ConfingV2RaayNG', 'Pruuxi', 'sina_tec', 'v2rayng_fars',
+        'v2rayipm', 'SOSkeyNET', 'vpn_proxy_trading', 'FreakConfig', 'V2HUBIR',
+        'Confing_m1SHAP', 'NPV_78', 'EmKavpn', 'filtershekanfilm', 'mtmvpn', 'hddify'
     ]
     
     all_links = []
-    current_time = datetime.now().strftime("%H:%M") # فقط ساعت برای کوتاه‌تر شدن اسم
+    # دریافت ساعت برای جلوگیری از کش و نمایش زمان آپدیت
+    current_time = datetime.now().strftime("%H:%M")
+    
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     for ch in channels:
         try:
-            res = requests.get(f"https://t.me/s/{ch}", timeout=15)
+            # استفاده از نسخه s/ برای استخراج مستقیم از وب
+            res = requests.get(f"https://t.me/s/{ch}", headers=headers, timeout=15)
             if res.status_code == 200:
+                # استخراج تمام پروتکل‌های معروف
                 found = re.findall(r'(?:vless|vmess|trojan|ss|tuic|hysteria2)://[^\s<"\'#]+', res.text)
                 if found:
-                    # حالا ۵۰ تای آخر هر کانال را برمی‌داریم
-                    for link in found[-50:]: 
-                        if "#" in link:
-                            # حذف امضای قبلی کانال و جایگزینی با ساعت خودمان
-                            base_link = link.split('#')[0]
-                            clean_link = f"{base_link}#{ch}-{current_time}"
-                        else:
-                            clean_link = f"{link}#{ch}-{current_time}"
+                    # برداشتن ۲۰ کانفیگ آخر از هر کانال برای لیست پربارتر
+                    for link in found[-20:]: 
+                        # تمیز کردن لینک و اضافه کردن نام کانال و زمان
+                        base_link = link.split('#')[0]
+                        clean_link = f"{base_link}#{ch}-{current_time}"
                         all_links.append(clean_link)
         except:
             continue
     
-    # حذف تکراری‌ها
+    # حذف لینک‌های تکراری
     unique_links = list(dict.fromkeys(all_links))
     result_text = "\n".join(unique_links)
     
+    # تبدیل کل لیست به فرمت Base64 برای اشتراک (Subscription)
     b64_output = base64.b64encode(result_text.encode('utf-8')).decode('utf-8')
     
     with open("sub_link.txt", "w") as f:
