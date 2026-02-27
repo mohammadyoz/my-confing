@@ -27,7 +27,7 @@ def get_configs():
                 found = re.findall(r'(?:vless|vmess|trojan|ss|tuic|hysteria2)://[^\s<"\'#]+', res.text)
                 if found:
                     # برداشتن ۲۰ کانفیگ آخر از هر کانال برای لیست پربارتر
-                    for link in found[-20:]: 
+                    for link in found[-50:]: 
                         # تمیز کردن لینک و اضافه کردن نام کانال و زمان
                         base_link = link.split('#')[0]
                         clean_link = f"{base_link}#{ch}-{current_time}"
