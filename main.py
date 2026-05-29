@@ -10,7 +10,7 @@ def get_configs():
         'ProxGp', 'ConfingV2RaayNG', 'Pruuxi', 'sina_tec', 'v2rayng_fars',
         'v2rayipm', 'SOSkeyNET', 'vpn_proxy_trading', 'FreakConfig', 'V2HUBIR',
         'Confing_m1SHAP', 'NPV_78', 'EmKavpn', 'filtershekanfilm', 'mtmvpn', 
-        'hddify', 'filembad', 'prrofile_purple'
+        'hddify', 'filembad', 'prrofile_purple','v2ray_dalghak1'
     ]
     
     all_links = []
